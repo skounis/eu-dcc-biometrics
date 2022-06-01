@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Create Digital ID Card</h1>
+  <h2>Step 2: ID Card, Payload and Signature.</h2>
+  <fieldset>
+    <legend>Preview</legend>
+    <div>
+      <img src="/images/<%= payload.image %>"><br>
+      <%= payload.fullname %>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Details</legend>
+    <form method="post" action="/upload/qr">
+      <fieldset>
+        <legend>Full name</legend>
+        <input type="text" value="<%= payload.fullname %>" size="100" name="fullname"><br>
+      </fieldset>
+        
+      <fieldset>
+        <legend>Image</legend>
+        File name: <br>
+        <input type="text" value="<%= payload.image %>" size="100" name="image" id="image">
+        <div>
+          Signature:<br>
+          <textarea cols="100" rows="10" name="imageSignature"
+            id="imageSignature"><%= payload.imageSignature %></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>JSON Payload<br></legend>
+        <textarea cols="100" rows="10" name="payload" id="payload"><%= raw %></textarea>
+      </fieldset>
+      <button type="submit" name="upload">Generate QR Code</button>
+    </form>
+  </fieldset>
+
+</body>
+
+</html>

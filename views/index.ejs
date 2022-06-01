@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>EJS Engine</title>
+  </head>
+  <body>
+      <h1>Create Digital ID Card</h1>
+      <h2>Step 1: Collect data.</h2>
+      <form method="post" action="upload/post" enctype="multipart/form-data">
+        <fieldset>
+          <legend>Full name</legend>
+          <input type="text" name="fullname" placeholder="Enter your full name">
+        </fieldset>
+        <fieldset>
+          <legend>Profile picture</legend>
+          <p>Select and upload a profile picture.</p>
+          <input type="file" name="image" />
+        </fieldset>
+        <button type="submit" name="upload">Sing and Create ID Document</button>
+      </form>
+  </body>
+</html>

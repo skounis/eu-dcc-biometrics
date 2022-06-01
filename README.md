@@ -42,3 +42,4 @@ openssl dgst -verify key.pub -keyform PEM -sha256 -signature cert.sign -binary p
     * https://gist.github.com/zfael/aa8e885b64ffa92e4670c9e549b686a4
     * https://www.geeksforgeeks.org/node-js-crypto-verify-function/
     * https://www.geeksforgeeks.org/node-js-crypto-verify-function/
+* [Node Express Image Upload And Resize Guide](https://appdividend.com/2022/03/03/node-express-image-upload-and-resize/)

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>QR code</title>
+  </head>
+  <body>
+    <h1>Create Digital ID Card</h1>
+    <h2>Step 3: QR Code.</h2>
+    <% /* %>
+    <img name="IDCard" src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=<%= payload %>">  
+    <% */ %>
+    <fieldset>
+      <legend>Digital ID Card</legend>
+      <img src="<%= qr %>"> <br>
+      <a download="id-qrcode" href="<%= qr %>">Download</a>
+    </fieldset>
+    <fieldset>
+      <legend>Details</legend>
+      <textarea cols="100" rows="10"><%= data %></textarea>
+    </fieldset>
+
+  </body>
+</html>
