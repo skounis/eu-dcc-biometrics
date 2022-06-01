@@ -12,7 +12,7 @@ app.use(express.static('public'));
 app.use('/assets', express.static('assets'));
 app.set('view engine', 'ejs');
 
-app.use('/upload', router);
+app.use('/issue', router);
 
 router.get('/', async function (req, res) {
   await res.render('index');

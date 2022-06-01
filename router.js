@@ -11,7 +11,6 @@ const Signer = require('./lib/Signer');
 const Resize = require('./lib/Resize');
 
 router.get('/', async function (req, res) {
-  console.log('Served by router');
   await res.render('index');
 });
 
