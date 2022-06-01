@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>QR code</title>
-  </head>
-  <body>
-    <h1>Create Digital ID Card</h1>
-    <h2>Step 3: QR Code.</h2>
-    <% /* %>
-    <img name="IDCard" src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=<%= payload %>">  
-    <% */ %>
-    <fieldset>
-      <legend>Digital ID Card</legend>
-      <img src="<%= qr %>"> <br>
-      <a download="id-qrcode" href="<%= qr %>">Download</a>
-    </fieldset>
-    <fieldset>
-      <legend>Details</legend>
-      <textarea cols="100" rows="10"><%= data %></textarea>
-    </fieldset>
 
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>QR code</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Create Digital ID Card</span>
+      <span class="navbar-text">
+        Step 3: QR Code.
+      </span>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <label for="payload" class="form-label">Digital ID Card:</label>
+          <img src="<%= qr %>" class="form-control">          
+        </div>
+        <a class="btn btn-primary" download="id-qrcode" href="<%= qr %>">Download</a>
+      </div>
+
+      <div class="col-6">
+        <div class="mb-3">
+          <label for="payload" class="form-label">Details:</label>
+          <textarea cols="100" rows="10" class="form-control"><%= data %></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <% /* %>
+    <img name="IDCard" src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=<%= payload %>">
+    <% */ %>
+
+</body>
+
 </html>

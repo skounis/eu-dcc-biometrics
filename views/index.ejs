@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>EJS Engine</title>
-  </head>
-  <body>
-      <h1>Create Digital ID Card</h1>
-      <h2>Step 1: Collect data.</h2>
-      <form method="post" action="upload/post" enctype="multipart/form-data">
-        <fieldset>
-          <legend>Full name</legend>
-          <input type="text" name="fullname" placeholder="Enter your full name">
-        </fieldset>
-        <fieldset>
-          <legend>Profile picture</legend>
-          <p>Select and upload a profile picture.</p>
-          <input type="file" name="image" />
-        </fieldset>
-        <button type="submit" name="upload">Sing and Create ID Document</button>
-      </form>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>EJS Engine</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Create Digital ID Card</span>
+      <span class="navbar-text">
+        Step 1: Collect data.
+      </span>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <form method="post" action="/upload/post" enctype="multipart/form-data">
+
+          <div class="mb-3">
+            <label for="fullname" class="form-label">Full name</label>
+            <input type="text" name="fullname" placeholder="Enter your full name" class="form-control">
+            <div id="emailHelp" class="form-text">Enter you full name.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="image" class="form-label">Profile picture</label>
+            <input type="file" name="image" class="form-control" />
+            <div id="emailHelp" class="form-text">Select and upload a profile picture..</div>
+          </div>
+
+          <button type="submit" name="upload" class="btn btn-primary">Sing and Create ID Document</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>

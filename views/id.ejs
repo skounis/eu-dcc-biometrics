@@ -4,44 +4,66 @@
 <head>
   <meta charset="utf-8">
   <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
 <body>
-  <h1>Create Digital ID Card</h1>
-  <h2>Step 2: ID Card, Payload and Signature.</h2>
-  <fieldset>
-    <legend>Preview</legend>
-    <div>
-      <img src="/images/<%= payload.image %>"><br>
-      <%= payload.fullname %>
+  <nav class="navbar bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Create Digital ID Card</span>
+      <span class="navbar-text">
+        Step 2: ID Card, Payload and Signature.
+      </span>
     </div>
-  </fieldset>
-  <fieldset>
-    <legend>Details</legend>
-    <form method="post" action="/upload/qr">
-      <fieldset>
-        <legend>Full name</legend>
-        <input type="text" value="<%= payload.fullname %>" size="100" name="fullname"><br>
-      </fieldset>
-        
-      <fieldset>
-        <legend>Image</legend>
-        File name: <br>
-        <input type="text" value="<%= payload.image %>" size="100" name="image" id="image">
-        <div>
-          Signature:<br>
-          <textarea cols="100" rows="10" name="imageSignature"
-            id="imageSignature"><%= payload.imageSignature %></textarea>
-        </div>
-      </fieldset>
+  </nav>
 
-      <fieldset>
-        <legend>JSON Payload<br></legend>
-        <textarea cols="100" rows="10" name="payload" id="payload"><%= raw %></textarea>
-      </fieldset>
-      <button type="submit" name="upload">Generate QR Code</button>
-    </form>
-  </fieldset>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <div>
+          <img src="/images/<%= payload.image %>"><br>
+          <%= payload.fullname %>
+        </div>
+      </div>
+      <div class="col-8">
+        <form method="post" action="/upload/qr">
+          <div class="mb-3">
+            <label for="fullname" class="form-label">Full name:</label>
+            <input type="text" value="<%= payload.fullname %>" size="100" name="fullname" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label for="image" class="form-label">Image:</label>
+            <input type="text" value="<%= payload.image %>" size="100" name="image" id="image" class="form-control">
+            <div class="form-text">The filename of the profile image.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="imageSignature" class="form-label">Signature:</label>
+            <textarea cols="100" rows="6" name="imageSignature" id="imageSignature"
+              class="form-control"><%= payload.imageSignature %></textarea>
+            <div class="form-text">The signature of the image.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="payload" class="form-label">JSON Payload:</label>
+            <textarea cols="100" rows="10" name="payload" id="payload" class="form-control"><%= raw %></textarea>
+            <div class="form-text">The payload of the QR. It includes a reference to the profile image and its signature.</div>
+          </div>
+
+          <button type="submit" name="upload" class="btn btn-primary">Generate QR Code</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
 
 </body>
 
