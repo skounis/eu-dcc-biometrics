@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Digital ID Wallet and Verifier</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Digital ID Wallet</span>
+      <span class="navbar-text">
+        Verify QR Code and Profile picture.
+      </span>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-3">
+        <%
+          let path = !!payload.isVerified ? 'happy': 'sad';
+          let candm = {
+            happy: {
+              class: "alert-success",
+              message: "QR Code and image verified."
+            },
+            sad: {
+              class: "alert-danger",
+              message: "The image is tampered!"
+            }
+          } 
+        %>
+
+        <div class="alert <%= candm[path]['class'] %>" role="alert">
+          <%= candm[path]['message'] %>
+        </div>
+
+        <div class="card text-center" style="width: 100%">
+          <img src="/images/<%= payload.image %>" class="card-img-top" alt="<%= payload.fullname %>">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= payload.fullname %>
+            </h5>
+            <p class="card-text">Republic of Neverland.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

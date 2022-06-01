@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
 const router = require('./router');
+const routerVerify = require('./routerVerify');
 
 
 app.use(bodyParser.json());
@@ -13,6 +14,7 @@ app.use('/assets', express.static('assets'));
 app.set('view engine', 'ejs');
 
 app.use('/issue', router);
+app.use('/verify', routerVerify);
 
 router.get('/', async function (req, res) {
   await res.render('index');
