@@ -1,5 +1,7 @@
 node_modules
-trust/*
+npm-debug.log
+/*.env
+# trust/*
 !trust/.gitkeep
 public/images/*
 !public/images/.gitkeep
