@@ -2,14 +2,15 @@
   "name": "digital-residency",
   "version": "1.0.0",
   "description": "Sing and verify text payload and image.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "sign": "node sign.js -f assets/profile.jpg -k trust/key.pem > trust/sign.txt",
     "verify": "node verify.js -f assets/profile.jpg -k trust/key.pub -s trust/sign.txt ",
     "genkeys": "mkdir -p trust && cd trust && openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -pkeyopt rsa_keygen_pubexp:3 -out key.pem && openssl pkey -in key.pem -out key.pub -pubout",
     "genkeys2": "mkdir -p trust && cd trust && openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:1024 -pkeyopt rsa_keygen_pubexp:3 -out key.pem && openssl pkey -in key.pem -out key.pub -pubout",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "startdev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
