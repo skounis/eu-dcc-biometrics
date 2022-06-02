@@ -6,7 +6,7 @@ const path = require('path');
 var QrCode = require('qrcode-reader');
 var Jimp = require("jimp");
 var fs = require('fs');
-var ImageParser = require("image-parser");
+// var ImageParser = require("image-parser");
 const router = express.Router();
 const upload = require('./uploadMiddleware');
 const Signer = require('./lib/Signer');
@@ -20,15 +20,13 @@ router.get('/', async function (req, res) {
 
 router.post('/post', upload.single('image'), async function (req, res) {
   const buffer = req.file.buffer;
-  // Parse the QRCode with ImageParser
-  // Read the QRCode with jsqr
-  var img = new ImageParser(buffer);
-  img.parse(function(err) {
+
+  Jimp.read(buffer, function (err, image) {
     if (err) {
       console.error(err);
       return res.status(400).json({err:err});
     }
-    const parsed = jsQR(img._imgBuffer, img.width(),img.height());
+    const parsed = jsQR(image.bitmap.data, image.bitmap.width,image.bitmap.height);
     const data = parsed.data;
     console.log(`Payload BASE64: \n ${data}\n`);
     const buff = Buffer.from(data, 'base64');
@@ -39,8 +37,31 @@ router.post('/post', upload.single('image'), async function (req, res) {
     payload.isVerified = isVerified;
     console.log(text);
     return res.render('wallet', { payload: payload });
-    // return res.status(200).json(payload);
+
   });
+
+
+  // Parse the QRCode with ImageParser
+  // Read the QRCode with jsqr
+  // var img = new ImageParser(buffer);
+  // img.parse(function(err) {
+  //   if (err) {
+  //     console.error(err);
+  //     return res.status(400).json({err:err});
+  //   }
+  //   const parsed = jsQR(img._imgBuffer, img.width(),img.height());
+  //   const data = parsed.data;
+  //   console.log(`Payload BASE64: \n ${data}\n`);
+  //   const buff = Buffer.from(data, 'base64');
+  //   const text = buff.toString('ascii');
+  //   console.log(`Payload ASCII: \n ${text}\n\n`);
+  //   const payload = JSON.parse(text);
+  //   const isVerified = verify(payload.image, payload.imageSignature);
+  //   payload.isVerified = isVerified;
+  //   console.log(text);
+  //   return res.render('wallet', { payload: payload });
+  //   // return res.status(200).json(payload);
+  // });
 
   // Parse the QRCode with Jimp 
   // Read the QRCode with qrcode-reader
