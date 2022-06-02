@@ -45,6 +45,8 @@ openssl dgst -verify key.pub -keyform PEM -sha256 -signature cert.sign -binary p
 * [Node Express Image Upload And Resize Guide](https://appdividend.com/2022/03/03/node-express-image-upload-and-resize/)
 * [Encoding and Decoding Base64 Strings in Node.js](https://stackabuse.com/encoding-and-decoding-base64-strings-in-node-js/)
 * [Reading QR codes using Node.js](https://www.geeksforgeeks.org/reading-qr-codes-using-node-js/)
+* [Fixing "fsevents" deployment errors on Heroku](https://www.danielternyak.com/post/fixing-fsevents-deployment-errors-on-heroku)
+* [Deploy on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
 
 #### Credits
 Avatars from [Avatar Maker](https://avatarmaker.com/)

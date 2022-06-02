@@ -30,6 +30,9 @@
   "devDependencies": {
     "nodemon": "^2.0.16"
   },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
   "engines": {
     "node": "14.x"
   }
