@@ -5,4 +5,9 @@ npm-debug.log
 !trust/.gitkeep
 public/images/*
 !public/images/.gitkeep
-
+# Samples
+!public/images/65d85ecf-a489-4197-bc67-b9ac266eb79b.png
+!public/images/486ed881-e88b-46f3-88b4-0aa7af536e1b.png
+!public/images/9366091f-3b90-4df8-8678-72e44fbdb4cb.png
+!public/images/cba6ff0e-fd4b-42e4-8fb1-726c25858247.png
+!public/images/f2235482-aff6-4d17-b032-76476f177779.png

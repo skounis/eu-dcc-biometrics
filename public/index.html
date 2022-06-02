@@ -1,36 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=He, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Digital ID - Issue and Verify</title>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
- 
-</head>
-<body>
-   <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a href="/" class="navbar-brand mb-0 h1">Digital ID</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link" href="/issue">Issue</a>
-            <a class="nav-link" href="/verify">Verify</a>
-            <a class="nav-link disabled">Help</a>
-          </div>
-        </div>    
-        <span class="navbar-text">
-          Step 1: Collect data.
-        </span>
-      </div>
-    </nav>
 
-   <p>
-     Node Express Image Upload and Resize Example
-   </p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=He, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Digital ID - Issue and Verify</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a href="/" class="navbar-brand mb-0 h1">Digital ID</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/issue">Issue</a>
+          <a class="nav-link" href="/verify">Verify</a>
+          <a class="nav-link disabled">Help</a>
+        </div>
+      </div>
+      <span class="navbar-text">
+        Step 1: Collect data.
+      </span>
+    </div>
+  </nav>
+
+  <div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="/assets/app/logo.svg" alt="" width="72" height="57">
+    <h1 class="display-5 fw-bold">Digital Residency Permit</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">An experimental Residency Permit implementation on top of the <a
+          href="https://github.com/ehn-dcc-development/eu-dcc-hcert-spec" target="_blank">EU-DCC specification</a> and
+        <strong>biometric data</strong>.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="/issue" class="btn btn-primary btn-lg px-4 gap-3">Issue a permit</a>
+        <a href="/verify" class="btn btn-outline-secondary btn-lg px-4">Verify a permit</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-4 py-5 my-1 text-center">
+    <h1 class="display-4 fw-bold lh-1">Sample data</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Download the QR code for the following sample cases and validate them with the <a href="/verify">Verifier</a></p>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-6 col-md-4 col-lg-3 mb-4">
+
+        <div class="card text-center" style="width: 100%">
+          <img src="assets/sample/bayta-darell/486ed881-e88b-46f3-88b4-0aa7af536e1b.png" class="card-img-top" alt="Bayta Darell">
+          <div class="card-body">
+            <h5 class="card-title">
+              Bayta Darell
+            </h5>
+            <p class="card-text">Republic of Neverland.</p>
+            <a href="assets/sample/bayta-darell/qr-bayta-darell.png" class="btn btn-primary" download="qr-bayta-darell">Download QR code</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 mb-4">
+
+        <div class="card text-center" style="width: 100%">
+          <img src="assets/sample/gall-dornick/9366091f-3b90-4df8-8678-72e44fbdb4cb.png" class="card-img-top" alt="Gall Dornick">
+          <div class="card-body">
+            <h5 class="card-title">
+              Gall Dornick
+            </h5>
+            <p class="card-text">Republic of Neverland.</p>
+            <a href="assets/sample/gall-dornick/qr-gall-dornick.png" class="btn btn-primary" download="qr-gall-dornick">Download QR code</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-6 col-md-4 col-lg-3 mb-4">
+
+        <div class="card text-center" style="width: 100%">
+          <img src="assets/sample/golan-trevize/cba6ff0e-fd4b-42e4-8fb1-726c25858247.png" class="card-img-top" alt="Golan Trevize">
+          <div class="card-body">
+            <h5 class="card-title">
+              Golan Trevize
+            </h5>
+            <p class="card-text">Republic of Neverland.</p>
+            <a href="assets/sample/golan-trevize/qr-golan-trevize.png" class="btn btn-primary" download="golan-trevize-qr">Download QR code</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 mb-4">
+
+        <div class="card text-center" style="width: 100%">
+          <img src="assets/sample/hari-seldon/65d85ecf-a489-4197-bc67-b9ac266eb79b.png" class="card-img-top" alt="Hari Seldon">
+          <div class="card-body">
+            <h5 class="card-title">
+              Hari Seldon
+            </h5>
+            <p class="card-text">Republic of Neverland.</p>
+            <a href="assets/sample/hari-seldon/qr-hari-seldon.png" class="btn btn-primary" download="hari-seldon-qr">Download QR code</a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+
+    <div class="px-4 py-3 my-1 text-center">
+      <h1 class="display-8 fw-bold lh-1">Fake Documents</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-2">The next documents have theri image tampered. Try to verify their QR Code.</p>
+      </div>
+    </div>
+
+
+    <div class="row">
+
+
+      <div class="col-6 col-md-4 col-lg-3 mb-4">
+
+        <div class="card text-center" style="width: 100%">
+          <img src="assets/sample/golan-trevize/cba6ff0e-fd4b-42e4-8fb1-726c25858247.png" class="card-img-top" alt="Golan Trevize">
+          <div class="card-body">
+            <h5 class="card-title">
+              Golan Trevize (fake)
+            </h5>
+            <p class="card-text">Republic of Neverland.</p>
+            <a href="assets/sample/golan-trevize-fake/qr-golan-trevize.png" class="btn btn-primary" download="fake-golan-trevize-qr">Download QR code</a>
+          </div>
+        </div>
+        
+      </div>
+                  
+    </div>
+
+
+  </div>
+
 </body>
+
 </html>
