@@ -14,7 +14,8 @@
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a href="/" class="navbar-brand mb-0 h1">Digital ID</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -23,7 +24,7 @@
           <a class="nav-link" href="/verify">Verify</a>
           <a class="nav-link disabled">Help</a>
         </div>
-      </div>    
+      </div>
       <span class="navbar-text">
         Verify - Step 2: Validate QR Code and Profile picture.
       </span>
@@ -32,34 +33,54 @@
 
   <div class="container mt-5">
     <div class="row justify-content-center">
-      <div class="col-3">
-        <%
-          let path = !!payload.isVerified ? 'happy': 'sad';
-          let candm = {
-            happy: {
-              class: "alert-success",
-              message: "QR Code and image verified."
-            },
-            sad: {
-              class: "alert-danger",
-              message: "The image is tampered!"
-            }
-          } 
-        %>
+      <div class="col-8">
+        <% let path=!!payload.isVerified ? 'happy' : 'sad' ; let candm={ happy: { class: "alert-success" ,
+          message: "QR Code and image verified." }, sad: { class: "alert-danger" , message: "The image is tampered!" } }
+          %>
 
-        <div class="alert <%= candm[path]['class'] %>" role="alert">
-          <%= candm[path]['message'] %>
-        </div>
-
-        <div class="card text-center" style="width: 100%">
-          <img src="/images/<%= payload.image %>" class="card-img-top" alt="<%= payload.fullname %>">
-          <div class="card-body">
-            <h5 class="card-title">
-              <%= payload.fullname %>
-            </h5>
-            <p class="card-text">Republic of Neverland.</p>
+          <div class="alert <%= candm[path]['class'] %>" role="alert">
+            <%= candm[path]['message'] %>
           </div>
-        </div>
+
+          <div class="card mb-2" style="max-width: 100%;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="/images/<%= payload.image %>" class="card-img-top" alt="<%= payload.fullname %>">
+              </div>
+
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= payload.fullname %>
+                  </h5>
+                  <table class="table table-sm my-2" style="font-size: .8rem;">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Type</th>
+                        <td>Residency Permit</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Sex</th>
+                        <td>M</td>
+                      </tr>    
+                      <tr>
+                        <th scope="row">Nationality</th>
+                        <td>Greece</td>
+                      </tr>  
+                      <tr>
+                        <th scope="row">Valid from - until</th>
+                        <td>26.06.2021 - 26.06.2025</td>
+                      </tr>                  
+                    </tbody>              
+                  </table>
+                  <small class="card-text" style="position: absolute; bottom: .6rem; right: 1rem;">Republic of Neverland.</small>
+                  <div class="badge text-bg-light" style="position: absolute; top: 1rem; right: 1rem;">B222333000 90</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
       </div>
     </div>
   </div>
