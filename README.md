@@ -51,7 +51,6 @@ Verify
 openssl dgst -verify key.pub -keyform PEM -sha256 -signature cert.sign -binary profile.jpg
 ```
 
-
 ## References
 * [How to sign and verify with openssl](https://pagefault.blog/2019/04/22/how-to-sign-and-verify-using-openssl/)
 * [Build a Command Line Application with Node.js](https://developer.okta.com/blog/2019/06/18/command-line-app-with-nodejs)
