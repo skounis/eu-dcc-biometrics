@@ -3,15 +3,18 @@
 
 <head>
   <meta charset="utf-8">
-  <title>QR code</title>
+  <meta name="viewport" content="width=He, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Digital Residence Permit - Issue and Verify - Issue Step 3: QR code</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="icon" href="/assets/app/logo.svg" type="image/svg+xml">
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a href="/" class="navbar-brand mb-0 h1">Digital ID</a>
+      <a href="/" class="navbar-brand mb-0 h1 " title="Digital Residence Permit">DRP</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,7 +37,7 @@
     <div class="row">
       <div class="col">
         <div class="mb-3">
-          <label for="payload" class="form-label">Digital ID Card:</label>
+          <label for="payload" class="form-label">Digital Residence Permit Card:</label>
           <img src="<%= qr %>" class="form-control">
         </div>
         <a class="btn btn-primary" download="id-qrcode" href="<%= qr %>">Download QR Code</a>
