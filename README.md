@@ -49,4 +49,5 @@ openssl dgst -verify key.pub -keyform PEM -sha256 -signature cert.sign -binary p
 * [Deploy on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
 
 #### Credits
-Avatars from [Avatar Maker](https://avatarmaker.com/)
+* Avatars from [Avatar Maker](https://avatarmaker.com/) 
+* Characters from [Isaac Asimov's Foundation series.](https://en.wikipedia.org/wiki/Foundation_series)
