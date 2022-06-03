@@ -34,6 +34,13 @@ Verify
 openssl dgst -verify key.pub -keyform PEM -sha256 -signature cert.sign -binary profile.jpg
 ```
 
+## Live demo
+Live demo is available on:
+* https://eu-dcc-biometrics.herokuapp.com/
+
+### Heroku 
+The demo is hosted on Heroku and is deployed with the [Deploy to Heroku](https://github.com/marketplace/actions/deploy-to-heroku) action.
+
 ### References
 * [How to sign and verify with openssl](https://pagefault.blog/2019/04/22/how-to-sign-and-verify-using-openssl/)
 * [Build a Command Line Application with Node.js](https://developer.okta.com/blog/2019/06/18/command-line-app-with-nodejs)
