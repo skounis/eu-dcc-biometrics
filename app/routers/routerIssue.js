@@ -1,15 +1,15 @@
-// router.js
 
 const express = require('express');
-const app = express();
+const fs = require('fs');
 const path = require('path');
 const QRCode = require('qrcode')
-const fs = require('fs');
 
-const router = express.Router();
-const upload = require('../uploadMiddleware');
-const Signer = require('../lib/Signer');
 const Resize = require('../lib/Resize');
+const Signer = require('../lib/Signer');
+const upload = require('../uploadMiddleware');
+
+const app = express();
+const router = express.Router();
 
 router.get('/', async function (req, res) {
   await res.render('issue-step-1');
@@ -39,7 +39,6 @@ router.post('/post', upload.single('image'), async function (req, res) {
 });
 
 router.post('/qr', async function (req, res) {
-
   const fullname = req.body.fullname;
   const image = req.body.image;
   const imageSignature = req.body.imageSignature;
@@ -47,13 +46,9 @@ router.post('/qr', async function (req, res) {
   const qr = JSON.stringify(payload, null, 2)
   console.log(qr)
   const b64 = Buffer(qr).toString('base64')
-  // QRCode.toDataURL(b64, { errorCorrectionLevel: 'H' }, function (err, url) {
-  //   return res.render('qr', { qr: url, data: qr });
-  // })
   QRCode.toDataURL(b64, {errorCorrectionLevel: 'H', width: 760 },function (err, url) {
     return res.render('issue-step-3', { qr: url, data: qr });
   })
 });
-
 
 module.exports = router;

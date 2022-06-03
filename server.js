@@ -1,11 +1,13 @@
-const express = require('express');
+
 const bodyParser = require('body-parser');
-const app = express();
-const port = process.env.PORT || 3000;
-const router = require('./app/routers/routerIssue');
-const routerVerify = require('./app/routers/routerVerify');
+const express = require('express');
 const path = require('path');
 
+const router = require('./app/routers/routerIssue');
+const routerVerify = require('./app/routers/routerVerify');
+
+const port = process.env.PORT || 3000;
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
