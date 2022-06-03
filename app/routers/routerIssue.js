@@ -12,7 +12,7 @@ const Signer = require('../lib/Signer');
 const Resize = require('../lib/Resize');
 
 router.get('/', async function (req, res) {
-  await res.render('index');
+  await res.render('issue-step-1');
 });
 
 router.post('/post', upload.single('image'), async function (req, res) {
@@ -35,7 +35,7 @@ router.post('/post', upload.single('image'), async function (req, res) {
   const payload = { fullname: fullname, image: filename, imageSignature: hex }
   // Signer.verify(req.file.buffer);
   // return res.status(200).json({ fullname: fullname, image: filename, imageSignature: hex });
-  return res.render('id', { payload: payload, raw: JSON.stringify(payload, null, 2) });
+  return res.render('issue-step-2', { payload: payload, raw: JSON.stringify(payload, null, 2) });
 });
 
 router.post('/qr', async function (req, res) {
@@ -51,7 +51,7 @@ router.post('/qr', async function (req, res) {
   //   return res.render('qr', { qr: url, data: qr });
   // })
   QRCode.toDataURL(b64, {errorCorrectionLevel: 'H', width: 760 },function (err, url) {
-    return res.render('qr', { qr: url, data: qr });
+    return res.render('issue-step-3', { qr: url, data: qr });
   })
 });
 

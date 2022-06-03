@@ -14,7 +14,7 @@ const Resize = require('../lib/Resize');
 const jsQR = require("jsqr");
 
 router.get('/', async function (req, res) {
-  await res.render('verify');
+  await res.render('verify-step-1');
 });
 
 
@@ -36,7 +36,7 @@ router.post('/post', upload.single('image'), async function (req, res) {
     const isVerified = verify(payload.image, payload.imageSignature);
     payload.isVerified = isVerified;
     console.log(text);
-    return res.render('wallet', { payload: payload });
+    return res.render('verify-step-2', { payload: payload });
 
   });
 
