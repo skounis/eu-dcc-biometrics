@@ -16,8 +16,7 @@ const privateKeyPath = options.key;
 const privateKey = fs.readFileSync(privateKeyPath);
 
 // Using Hashing Algorithm
-// const algorithm = "RSA-SHA256";
-const algorithm = "MD5";
+const algorithm = "RSA-SHA256";
  
 // Converting string to buffer
 const data = fs.readFileSync(fileName);

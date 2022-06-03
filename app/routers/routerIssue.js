@@ -7,16 +7,16 @@ const QRCode = require('qrcode')
 const fs = require('fs');
 
 const router = express.Router();
-const upload = require('./uploadMiddleware');
-const Signer = require('./lib/Signer');
-const Resize = require('./lib/Resize');
+const upload = require('../uploadMiddleware');
+const Signer = require('../lib/Signer');
+const Resize = require('../lib/Resize');
 
 router.get('/', async function (req, res) {
   await res.render('index');
 });
 
 router.post('/post', upload.single('image'), async function (req, res) {
-  const imagePath = path.join(__dirname, '/public/images');
+  const imagePath = path.join(__dirname, '../../public/images');
   const fileUpload = new Resize(imagePath);
   if (!req.file) {
     res.status(401).json({ error: 'Please provide an image' });
