@@ -1,4 +1,21 @@
-# Sign and Verify a file with Node.
+# Digital Residence Permit
+An experimental [Residence Permit](https://eu-dcc-biometrics.herokuapp.com/) implementation on top of the [EU-DCC specifications](https://github.com/ehn-dcc-development/eu-dcc-hcert-spec) and biometric data.
+
+## Live demo
+Live demo is available on:
+* https://eu-dcc-biometrics.herokuapp.com/
+
+### Heroku 
+The demo is hosted on Heroku and is deployed with the [Deploy to Heroku](https://github.com/marketplace/actions/deploy-to-heroku) action.
+
+## EU-DCC Ecosystem
+This work uses specifications, source code and libraries from 
+
+*  [Electronic Health Certificates](https://github.com/ehn-dcc-development/eu-dcc-hcert-spec)
+*  [Trivial/rudimentary eHN-simplified implementation](https://github.com/ehn-dcc-development/ehn-sign-verify-javascript-trivial)
+*  [EU-DCC Javascript Library](https://github.com/ehn-dcc-development/eu-dcc-js)
+
+## Sign and Verify a file with Node.
 CLI Example for signing and verifying a binary file.
 
 Generate keys:
@@ -16,14 +33,14 @@ Verify the `assets/profile.jpg` with the public key and the signature.
 npm run genkeys
 ```
 
-## Sing and Verify with OpenSSL
-### Generate 4096-bit RSA private key and extract public key
+### Sing and Verify with OpenSSL
+#### Generate 4096-bit RSA private key and extract public key
 ```bash
 openssl genrsa -out key.pem 4096
 openssl rsa -in key.pem -pubout > key.pub
 ```
 
-### Sign and verify
+#### Sign and verify
 Sign and create signature:
 ```bash
 openssl dgst -sign key.pem -keyform PEM -sha256 -out cert.sign -binary profile.jpg
@@ -34,14 +51,8 @@ Verify
 openssl dgst -verify key.pub -keyform PEM -sha256 -signature cert.sign -binary profile.jpg
 ```
 
-## Live demo
-Live demo is available on:
-* https://eu-dcc-biometrics.herokuapp.com/
 
-### Heroku 
-The demo is hosted on Heroku and is deployed with the [Deploy to Heroku](https://github.com/marketplace/actions/deploy-to-heroku) action.
-
-### References
+## References
 * [How to sign and verify with openssl](https://pagefault.blog/2019/04/22/how-to-sign-and-verify-using-openssl/)
 * [Build a Command Line Application with Node.js](https://developer.okta.com/blog/2019/06/18/command-line-app-with-nodejs)
 * Snippets
