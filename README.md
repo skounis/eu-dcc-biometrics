@@ -50,6 +50,12 @@ Verify
 ```bash
 openssl dgst -verify key.pub -keyform PEM -sha256 -signature cert.sign -binary profile.jpg
 ```
+## Notes
+Install EU-DCC depedencies
+```bash
+npm install @fidm/asn1 @fidm/x509 base45-js cbor cose-js sha256-uint8array uint8-to-base64
+npm install base45
+```
 
 ## References
 * [How to sign and verify with openssl](https://pagefault.blog/2019/04/22/how-to-sign-and-verify-using-openssl/)
