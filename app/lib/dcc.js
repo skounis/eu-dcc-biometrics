@@ -119,6 +119,58 @@ function decode(hcert) {
 }
 
 /**
+ * 
+ * @param {*} payload 
+ * @param {*} certPEM X.509 certificate in PEM formatted buffer
+ * @param {*} pkPEM an PrivateKey for X.509 certificate from PKCS#8 PEM formatted buffer or PKCS#1 RSA PEM formatted buffer
+ * @returns 
+ */
+async function encode(payload, certPEM, pkPEM) {
+	const cose = require('cose-js')
+	const rawHash = require("sha256-uint8array").createHash;
+	const { PEM, ASN1, Class, Tag } = require('@fidm/asn1')
+	const { Certificate, PrivateKey } = require('@fidm/x509')
+	const zlib = require('pako');
+	var cbor = require('cbor');
+	const base45 = require('base45-js');
+  
+	const cert = Certificate.fromPEM(certPEM)
+	var bytes = new Uint8Array(cert.raw);
+  
+	const fingerprint = rawHash().update(cert.raw).digest();
+	const keyID = fingerprint.slice(0, 8)
+  
+	const pk = PrivateKey.fromPEM(pkPEM)
+  
+	// Highly ES256 specific - extract the 'D' for signing.
+	//
+	const keyD = Buffer.from(pk.keyRaw.slice(7, 7 + 32))
+  
+	// const buffer = Buffer.alloc(4_096);
+  
+	const plaintext = cbor.encode(payload)
+	const headers = {
+	  'p': { 'alg': 'ES256', 'kid': keyID },
+	  'u': {}
+	};
+  
+	const signer = {
+	  'key': {
+		'd': keyD
+	  }
+	};
+  
+	let buf = await cose.sign.create(
+	  headers,
+	  plaintext,
+	  signer);
+	buf = zlib.deflate(buf)
+	buf = 'HC1:' + base45.encode(buf)
+	const dcc = Buffer.from(buf).toString()
+	process.stdout.write(dcc);
+	return dcc;
+}
+/**
  * Verify the cose signature of an HCert.
  * Throws an error if verification fails
  * 
@@ -172,6 +224,7 @@ function hex2buf(hex) { // hex as string
 }
 
 exports.inflate = inflate;
+exports.encode = encode;
 exports.decode = decode;
 exports.verify = verify;
 exports.buf2hex = buf2hex;
