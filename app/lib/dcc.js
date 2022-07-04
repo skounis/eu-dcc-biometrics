@@ -167,7 +167,7 @@ async function encode(payload, certPEM, pkPEM) {
 	buf = zlib.deflate(buf)
 	buf = 'HC1:' + base45.encode(buf)
 	const dcc = Buffer.from(buf).toString()
-	process.stdout.write(dcc);
+	// process.stdout.write(dcc);
 	return dcc;
 }
 /**
