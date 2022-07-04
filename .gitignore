@@ -11,3 +11,6 @@ public/images/*
 !public/images/9366091f-3b90-4df8-8678-72e44fbdb4cb.png
 !public/images/cba6ff0e-fd4b-42e4-8fb1-726c25858247.png
 !public/images/f2235482-aff6-4d17-b032-76476f177779.png
+work/*
+!work/.gitkeep
+logs
