@@ -4,12 +4,14 @@
   "description": "Sing and verify text payload and image.",
   "main": "server.js",
   "scripts": {
-    "sign": "node sign.js -f assets/profile.jpg -k trust/key.pem > trust/sign.txt",
-    "verify": "node verify.js -f assets/profile.jpg -k trust/key.pub -s trust/sign.txt ",
+    "image:sign": "node image.sign.js -f assets/profile.jpg -k trust/key.pem > trust/sign.txt",
+    "image:verify": "node image.verify.js -f assets/profile.jpg -k trust/key.pub -s trust/sign.txt ",
     "scan": "node scan.js -f assets/sample/bayta-darell/qr-bayta-darell.png",
-    "genkeys": "mkdir -p trust && cd trust && openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -pkeyopt rsa_keygen_pubexp:3 -out key.pem && openssl pkey -in key.pem -out key.pub -pubout",
-    "genkeys2": "mkdir -p trust && cd trust && openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:1024 -pkeyopt rsa_keygen_pubexp:3 -out key.pem && openssl pkey -in key.pem -out key.pub -pubout",
+    "genkeys:4096": "mkdir -p trust && cd trust && openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -pkeyopt rsa_keygen_pubexp:3 -out key.pem && openssl pkey -in key.pem -out key.pub -pubout",
+    "genkeys:1024": "mkdir -p trust && cd trust && openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:1024 -pkeyopt rsa_keygen_pubexp:3 -out key.pem && openssl pkey -in key.pem -out key.pub -pubout",
     "genkeys:p8": "cd trust && openssl pkcs8 -in key.pem -nocrypt -topk8 -out key.p8",
+    "permit:create": "node permit.create.js -f assets/sample/harla-branno/5beefe74-d6ab-43c4-8e76-75a10f63d475.png -k trust/key.pem -p assets/sample/harla-branno/payload.json > ./work/permit.txt",
+    "permit:verify": "node permit.verify.js -f work/permit.txt -k trust/key.pub -s trust/sign.txt",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "startdev": "nodemon server.js"
@@ -38,6 +40,7 @@
     "sharp": "^0.30.6",
     "uint8-to-base64": "^0.2.0",
     "uuid": "^8.3.2",
+    "winston": "^3.8.1",
     "yargs": "13.2"
   },
   "devDependencies": {
