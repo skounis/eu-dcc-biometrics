@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const QRCode = require('qrcode')
 
+const eudcc = require('../lib/dcc');
 const Resize = require('../lib/Resize');
 const Signer = require('../lib/Signer');
 const upload = require('../uploadMiddleware');
@@ -63,56 +64,22 @@ router.post('/qr', async function (req, res) {
  * @param {JSON} value 
  */
 const ehnSign = async function (value) {
-  const cose = require('cose-js')
-  const fs = require('fs')
-  const rawHash = require("sha256-uint8array").createHash;
-  const { PEM, ASN1, Class, Tag } = require('@fidm/asn1')
-  const { Certificate, PrivateKey } = require('@fidm/x509')
-  const zlib = require('pako');
-  var cbor = require('cbor');
-  const base45 = require('base45-js');
-
-  const cert = Certificate.fromPEM(fs.readFileSync('./dsc-worker.pem'))
-  var bytes = new Uint8Array(cert.raw);
-
-  const fingerprint = rawHash().update(cert.raw).digest();
-  const keyID = fingerprint.slice(0, 8)
-
-  const pk = PrivateKey.fromPEM(fs.readFileSync('./dsc-worker.p8'))
-
-  // Highly ES256 specific - extract the 'D' for signing.
-  //
-  const keyD = Buffer.from(pk.keyRaw.slice(7, 7 + 32))
-
-  const buffer = Buffer.alloc(4_096);
-  data = new Map();
+  // Prepare the Payload
+  const data = new Map();
   data.set(1, value);
 
-  payload = new Map();
+  const payload = new Map();
   payload.set(CLAIM_ISS, 'LU');
   payload.set(CLAIM_EXP, 1644210000);
   payload.set(CLAIM_IAT, 1643197539);
   payload.set(CLAIM_DCC, data);
 
-  const plaintext = cbor.encode(payload)
-  const headers = {
-    'p': { 'alg': 'ES256', 'kid': keyID },
-    'u': {}
-  };
+  // Load certificate and private key from filesystem
+  const fs = require('fs')
+  const certPEM = fs.readFileSync('./dsc-worker.pem');
+  const pkPEM = fs.readFileSync('./dsc-worker.p8');
 
-  const signer = {
-    'key': {
-      'd': keyD
-    }
-  };
-
-  let buf = await cose.sign.create(
-    headers,
-    plaintext,
-    signer);
-  buf = zlib.deflate(buf)
-  buf = 'HC1:' + base45.encode(buf)
-  const dcc = Buffer.from(buf).toString()
+  const dcc = await eudcc.encode(payload, certPEM, pkPEM);
   process.stdout.write(dcc);
   return dcc;
 }
