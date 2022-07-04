@@ -12,6 +12,7 @@ const upload = require('../uploadMiddleware');
 const app = express();
 const router = express.Router();
 
+// TODO: Load from the library
 const CLAIM_ISS = 1;
 const CLAIM_IAT = 6;
 const CLAIM_EXP = 4;
