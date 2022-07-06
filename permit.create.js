@@ -7,6 +7,7 @@ const winston = require('winston');
 
 const eudcc = require('./app/lib/dcc');
 const logger = require('./app/lib/logger');
+const mock = require('./app/lib/mock');
 
 const options = yargs
   .usage("Usage: -f <file> -k <pem> -p <payload>")
@@ -51,11 +52,9 @@ const pkPEM = fs.readFileSync('./trust/dcc/dsc-worker.p8');    // Private key
 logger.info('Verifiable Certificate: ');
 
 const certPayload = new Map();
-var sEpochNow = Math.floor((+new Date()) / 1000);
-var sEpoch4Years = Math.floor(new Date().setFullYear(new Date().getFullYear() + 4) / 1000);
-certPayload.set(eudcc.CLAIM_ISS, 'NV');         // Neverland certificate
-certPayload.set(eudcc.CLAIM_EXP, sEpoch4Years); // Expiration date
-certPayload.set(eudcc.CLAIM_IAT, sEpochNow);    // Issuing date
+certPayload.set(eudcc.CLAIM_ISS, mock.country);         // Neverland certificate
+certPayload.set(eudcc.CLAIM_EXP, mock.sEpoch4Years); // Expiration date
+certPayload.set(eudcc.CLAIM_IAT, mock.sEpochNow);    // Issuing date
 certPayload.set(eudcc.CLAIM_DCC, new Map().set(1, payload));
 
 eudcc.encode(certPayload, certPEM, pkPEM).then(function (value) {
