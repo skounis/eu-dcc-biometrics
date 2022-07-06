@@ -5,7 +5,7 @@ const yargs = require("yargs");
  
 const options = yargs
  .usage("Usage: -f <file> -k <pem>")
- .option("f", { alias: "file", describe: "Path to the file you need to sign", type: "string", demandOption: true })
+ .option("f", { alias: "file", describe: "Path to the file you need to verify", type: "string", demandOption: true })
  .option("k", { alias: "key", describe: "Path to the public key (key.pub)", type: "string", demandOption: true })
  .option("s", { alias: "signature", describe: "Path to the signature file (hex)", type: "string", demandOption: true })
  .argv;

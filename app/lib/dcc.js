@@ -167,7 +167,7 @@ async function encode(payload, certPEM, pkPEM) {
 	buf = zlib.deflate(buf)
 	buf = 'HC1:' + base45.encode(buf)
 	const dcc = Buffer.from(buf).toString()
-	process.stdout.write(dcc);
+	// process.stdout.write(dcc);
 	return dcc;
 }
 /**
@@ -229,6 +229,10 @@ exports.decode = decode;
 exports.verify = verify;
 exports.buf2hex = buf2hex;
 exports.hex2buf = hex2buf;
+exports.CLAIM_ISS = CLAIM_ISS;
+exports.CLAIM_IAT = CLAIM_IAT;
+exports.CLAIM_EXP = CLAIM_EXP;
+exports.CLAIM_DCC = CLAIM_DCC;
 // import b45 from "base45";
 // import zlib from "zlib";
 // import cbor from "cbor";
