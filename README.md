@@ -8,6 +8,21 @@ Live demo is available on:
 ### Heroku 
 The demo is hosted on Heroku and is deployed with the [Deploy to Heroku](https://github.com/marketplace/actions/deploy-to-heroku) action.
 
+## CLI demo
+Install depedencies
+```
+npm install
+```
+
+Create and sign a permit
+```
+npm run permit:create
+```
+Verify a permit
+```
+npm run permit:create
+```
+
 ## EU-DCC Ecosystem
 This work uses specifications, source code and libraries from 
 
