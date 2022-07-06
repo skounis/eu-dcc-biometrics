@@ -5,18 +5,13 @@ const path = require('path');
 const QRCode = require('qrcode')
 
 const eudcc = require('../lib/dcc');
+const mock = require('../lib/mock');
 const Resize = require('../lib/Resize');
 const Signer = require('../lib/Signer');
 const upload = require('../uploadMiddleware');
 
 const app = express();
 const router = express.Router();
-
-// TODO: Load from the library
-const CLAIM_ISS = 1;
-const CLAIM_IAT = 6;
-const CLAIM_EXP = 4;
-const CLAIM_DCC = -260;
 
 router.get('/', async function (req, res) {
   await res.render('issue-step-1');
@@ -65,21 +60,19 @@ router.post('/qr', async function (req, res) {
  * @param {JSON} value 
  */
 const ehnSign = async function (value) {
-  // Prepare the Payload
-  const data = new Map();
-  data.set(1, value);
-
+  // Prepare the payload
   const payload = new Map();
-  payload.set(CLAIM_ISS, 'LU');
-  payload.set(CLAIM_EXP, 1644210000);
-  payload.set(CLAIM_IAT, 1643197539);
-  payload.set(CLAIM_DCC, data);
+  payload.set(eudcc.CLAIM_ISS, mock.country);         // Neverland certificate
+  payload.set(eudcc.CLAIM_EXP, mock.sEpoch4Years); // Expiration date
+  payload.set(eudcc.CLAIM_IAT, mock.sEpochNow);    // Issuing date
+  payload.set(eudcc.CLAIM_DCC, new Map().set(1, value));
 
   // Load certificate and private key from filesystem
   const fs = require('fs')
-  const certPEM = fs.readFileSync('./dsc-worker.pem');
-  const pkPEM = fs.readFileSync('./dsc-worker.p8');
+  const certPEM = fs.readFileSync('./trust/dcc/dsc-worker.pem');
+  const pkPEM = fs.readFileSync('./trust/dcc/dsc-worker.p8');
 
+  // Sing the payload and create the certificate
   const dcc = await eudcc.encode(payload, certPEM, pkPEM);
   process.stdout.write(dcc);
   return dcc;
