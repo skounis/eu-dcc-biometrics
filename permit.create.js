@@ -3,7 +3,6 @@ const crypto = require('crypto');
 const fs = require('fs');
 const yargs = require("yargs");
 const path = require('path');
-const winston = require('winston');
 
 const eudcc = require('./app/lib/dcc');
 const logger = require('./app/lib/logger');
@@ -46,7 +45,7 @@ logger.info(JSON.stringify(payload, null, 2));
 
 // Create Residence Permit Certificate
 // Attach payload and sign
-const certPEM = fs.readFileSync('./trust/dcc/dsc-worker.pem'); // Document Signing Certificate (DSC)y
+const certPEM = fs.readFileSync('./trust/dcc/dsc-worker.pem'); // Document Signing Certificate (DSC)
 const pkPEM = fs.readFileSync('./trust/dcc/dsc-worker.p8');    // Private key
 
 logger.info('Verifiable Certificate: ');
